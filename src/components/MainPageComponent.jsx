@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Container, Row, Col, Form } from "react-bootstrap";
+import { Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import video from "../assets/video.mp4";
 
 const MainPage = () => {
   const [query, setQuery] = useState("");
@@ -36,41 +37,53 @@ const MainPage = () => {
   };
 
   return (
-    <Container>
-      <Row>
-        <Col xs={10} className="mx-auto my-3">
-          <h1>Type the City</h1>
-        </Col>
-        <Col xs={10} className="mx-auto">
-          <Form onSubmit={handleSubmit}>
-            <Form.Control
-              type="search"
-              value={query}
-              onChange={handleChange}
-              placeholder="Type and press Enter"
-            />
-          </Form>
-        </Col>
-        <Col xs={10} className="mx-auto mb-5">
-          {info && (
-            <>
-              <h4>{info.name}</h4>
-              <p>{info.main.temp + " ºC"}</p>
-              <button
-                onClick={() => {
-                  dispatch({
-                    type: "ADD_CITY_INFO",
-                    payload: { info },
-                  });
-                }}
-              >
-                <Link to={"/details/" + info.name}> More Details</Link>
-              </button>
-            </>
-          )}
-        </Col>
-      </Row>
-    </Container>
+    <div className="main">
+      <video src={video} autoPlay loop muted />
+
+      <div className="content">
+        <Row>
+          <Col xs={10} className="mx-auto my-3 d-flex justify-content-center">
+            <h1>Type the City</h1>
+          </Col>
+          <Col xs={10} className="mx-auto ">
+            <Form onSubmit={handleSubmit}>
+              <Form.Control
+                type="search"
+                value={query}
+                onChange={handleChange}
+                placeholder="Type and press Enter"
+              />
+            </Form>
+          </Col>
+          <Col xs={10} className="mx-auto mb-5 ">
+            {info && (
+              <>
+                <div className="city-info">
+                  <h4>{info.name}</h4>
+                  <p>{info.main.temp + " ºC"}</p>
+                  <span className="mb-5">
+                    Max <strong> {info.main.temp_max + " ºC   "}</strong>
+                    Min <strong> {info.main.temp_min + " ºC"}</strong>
+                  </span>
+                  <button
+                    onClick={() => {
+                      dispatch({
+                        type: "ADD_CITY_INFO",
+                        payload: { info },
+                      });
+                    }}
+                  >
+                    <Link className="btn" to={"/details/" + info.name}>
+                      More Details
+                    </Link>
+                  </button>
+                </div>
+              </>
+            )}
+          </Col>
+        </Row>
+      </div>
+    </div>
   );
 };
 

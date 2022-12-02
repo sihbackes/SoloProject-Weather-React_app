@@ -1,18 +1,42 @@
 import { useSelector } from "react-redux";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
+import video from "../assets/video.mp4";
 
 const WeatherDetails = () => {
   const info = useSelector((state) => state.weatherDetails.content);
   const city = info.info;
   return (
-    <Container>
-      <Row>
-        <Col xs={10} className="mx-auto mb-5">
-          <p>{city.name}</p>
-          <p>{city.main.temp + " ºC"}</p>
-        </Col>
-      </Row>
-    </Container>
+    <div className="main">
+      <video src={video} autoPlay loop muted />
+
+      <div className="content">
+        <Row>
+          <Col xs={10} className="mx-auto mb-5">
+            <div className="mt-5 city-info-details">
+              <h3>{city.name}</h3>
+              <p>
+                <strong>{city.main.temp + " ºC"}</strong>
+              </p>
+              <p>
+                Feels Like <strong>{city.main.feels_like}</strong>
+              </p>
+              <p>
+                Humidity <strong>{city.main.humidity}</strong>
+              </p>
+              <p>
+                Wind Speed <strong>{city.wind.speed}</strong>
+              </p>
+              <p>
+                <span>
+                  Max <strong> {city.main.temp_max + " ºC   "}</strong>
+                  Min <strong> {city.main.temp_min + " ºC"}</strong>
+                </span>
+              </p>
+            </div>
+          </Col>
+        </Row>
+      </div>
+    </div>
   );
 };
 
