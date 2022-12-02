@@ -43,7 +43,7 @@ const MainPage = () => {
       <div className="content">
         <Row>
           <Col xs={10} className="mx-auto my-3 d-flex justify-content-center">
-            <h1>Type the City</h1>
+            <h1>Weather</h1>
           </Col>
           <Col xs={10} className="mx-auto ">
             <Form onSubmit={handleSubmit}>
@@ -60,7 +60,16 @@ const MainPage = () => {
               <>
                 <div className="city-info">
                   <h4>{info.name}</h4>
-                  <p>{info.main.temp + " ºC"}</p>
+                  <img
+                    src={`http://openweathermap.org/img/wn/${info.weather[0].icon}@2x.png`}
+                    alt=""
+                  />
+                  <p className="weather-description">
+                    {info.weather[0].description.toUpperCase()}
+                  </p>
+                  <p>
+                    <strong>{info.main.temp + " ºC"}</strong>
+                  </p>
                   <span className="mb-5">
                     Max <strong> {info.main.temp_max + " ºC   "}</strong>
                     Min <strong> {info.main.temp_min + " ºC"}</strong>

@@ -14,6 +14,14 @@ const WeatherDetails = () => {
           <Col xs={10} className="mx-auto mb-5">
             <div className="mt-5 city-info-details">
               <h3>{city.name}</h3>
+              <img
+                src={`http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`}
+                alt=""
+              />
+
+              <p className="weather-description">
+                {city.weather[0].description.toUpperCase()}
+              </p>
               <p>
                 <strong>{city.main.temp + " ºC"}</strong>
               </p>
