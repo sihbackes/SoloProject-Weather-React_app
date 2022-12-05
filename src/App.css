@@ -61,8 +61,3 @@ button {
   background-color: rgba(24, 24, 24, 0.15);
   border-radius: 5px;
 }
-
-.weather-description {
-  font-size: 12px;
-  font-weight: bold;
-}

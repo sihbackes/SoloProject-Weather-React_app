@@ -64,8 +64,13 @@ const MainPage = () => {
                     src={`http://openweathermap.org/img/wn/${info.weather[0].icon}@2x.png`}
                     alt=""
                   />
-                  <p className="weather-description">
-                    {info.weather[0].description.toUpperCase()}
+                  <p>
+                    {info.weather[0].description
+                      .split(" ")
+                      .map(
+                        (word) => word.charAt(0).toUpperCase() + word.slice(1)
+                      )
+                      .join(" ")}
                   </p>
                   <p>
                     <strong>{info.main.temp + " ºC"}</strong>

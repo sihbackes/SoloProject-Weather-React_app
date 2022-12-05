@@ -19,8 +19,11 @@ const WeatherDetails = () => {
                 alt=""
               />
 
-              <p className="weather-description">
-                {city.weather[0].description.toUpperCase()}
+              <p>
+                {city.weather[0].description
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" ")}
               </p>
               <p>
                 <strong>{city.main.temp + " ºC"}</strong>
