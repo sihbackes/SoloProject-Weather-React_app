@@ -3,6 +3,7 @@ import { Row, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import video from "../assets/video.mp4";
+import { useEffect } from "react";
 
 const MainPage = () => {
   const [query, setQuery] = useState("");
@@ -13,7 +14,7 @@ const MainPage = () => {
     payload: { info },
   });
 
-  const fetchData = async () => {
+  const fetchData = async (query) => {
     try {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${query}&units=metric&cnt=5&appid=5dbd7b935d142d2d2f600da3d872c733`
@@ -33,9 +34,11 @@ const MainPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    fetchData();
+    fetchData(query);
   };
-
+  useEffect(() => {
+    fetchData("london");
+  });
   return (
     <div className="main">
       <video src={video} autoPlay loop muted />
@@ -55,7 +58,7 @@ const MainPage = () => {
               />
             </Form>
           </Col>
-          <Col xs={10} className="mx-auto mb-5 ">
+          <Col xs={10} className="mx-auto mb-5 mt-5 ">
             {info && (
               <>
                 <div className="city-info">
