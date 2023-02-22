@@ -38,7 +38,7 @@ const MainPage = () => {
   };
   useEffect(() => {
     fetchData("london");
-  });
+  }, []);
   return (
     <div className="main">
       <video src={video} autoPlay loop muted />
